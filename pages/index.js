@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
+import Link from 'next/link'
+import getSortedPostsData from '../lib/posts'
 
 export default function Home() {
+
   return (
     <Layout home>
       <Head>
@@ -10,8 +13,8 @@ export default function Home() {
       </Head>
 
       <section className={utilStyles.headingMd}>
-        <p>Välkommen till min hemsa. :constructionsign:</p>
-
+        <p>Välkommen till min hemsa. :constructionsign:. Kolla in min <Link href="posts/first-post">Första post</Link></p>
+  <p>{getSortedPostsData()}</p>
         <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-md m-8">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="/images/logo.svg" alt="ChitChat Logo" />
