@@ -12,37 +12,27 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
 
-      <section className={utilStyles.headingMd}>
-        <p>Välkommen till min hemsa. :constructionsign:. Kolla in min <Link href="posts/first-post">Första post</Link></p>
+      
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+
+        {allPostsData.map(({ id, date, title }) => (
 
 
-        </section>
-        
-        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              
-              
-              <Link href={"posts/" + id}>{title}</Link>
-              <br />
-              
-              <small className={utilStyles.lightText}><Date dateString={date} /></small>
-            </li>
-          ))}
-        </ul>
+          <div key={id} className="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-md m-8">
+            <div className="flex-shrink-0">
+              <img className="h-12 w-12" src="/images/logo.svg" alt="Temp Logo" />
+            </div>
+            <div className="ml-6 pt-1">
+              <h4 className="text-xl text-gray-900 leading-tight"><Link href={"posts/" + id}>{title}</Link></h4>
+              <p className="text-base text-gray-600 leading-normal"><Date dateString={date} /></p>
+            </div>
+          </div>
+
+
+        ))}
+
       </section>
-        <section>
-        <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-md m-8">
-          <div class="flex-shrink-0">
-            <img class="h-12 w-12" src="/images/logo.svg" alt="ChitChat Logo" />
-          </div>
-          <div class="ml-6 pt-1">
-            <h4 class="text-xl text-gray-900 leading-tight">ChitChat</h4>
-            <p class="text-base text-gray-600 leading-normal">You have a new message!</p>
-          </div>
-        </div>
+      <section>
 
 
         <div class="max-w-sm mx-auto bg-white shadow-md rounded-md overflow-hidden m-8">

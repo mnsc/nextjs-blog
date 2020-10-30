@@ -1,4 +1,4 @@
-import Layout from '../../components/layout'
+import Layout, { siteTitle } from '../../components/layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import Head from 'next/head'
 import utilStyles from '../../styles/utils.module.css'
@@ -7,7 +7,7 @@ import Date from '../../components/date'
 export default function Post({postData}) {
     return <Layout>
         <Head>
-            <title>Mattias Blogg - {postData.title}</title>
+            <title>{postData.title} - {siteTitle}</title>
         </Head>
         <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
