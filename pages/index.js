@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
-import getSortedPostsData from '../lib/posts'
-
-export default function Home() {
+import { getSortedPostsData } from '../lib/posts'
+import Date from '../components/date'
+export default function Home({ allPostsData }) {
 
   return (
     <Layout home>
@@ -14,7 +14,26 @@ export default function Home() {
 
       <section className={utilStyles.headingMd}>
         <p>Välkommen till min hemsa. :constructionsign:. Kolla in min <Link href="posts/first-post">Första post</Link></p>
-  <p>{getSortedPostsData()}</p>
+
+
+        </section>
+        
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              
+              
+              <Link href={"posts/" + id}>{title}</Link>
+              <br />
+              
+              <small className={utilStyles.lightText}><Date dateString={date} /></small>
+            </li>
+          ))}
+        </ul>
+      </section>
+        <section>
         <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-md m-8">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="/images/logo.svg" alt="ChitChat Logo" />
@@ -42,4 +61,13 @@ export default function Home() {
       </section>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
 }
