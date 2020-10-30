@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 
 const name = 'Mattias Blom'
-export const siteTitle = 'My Next.js Labb'
+export const siteTitle = 'Mattias Blom//Next.js Labb'
 
 export default function Layout({ children, home }) {
     return (
@@ -46,11 +46,6 @@ export default function Layout({ children, home }) {
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
           </>
         )}
       </header>
